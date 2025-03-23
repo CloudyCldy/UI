@@ -21,7 +21,7 @@ export default function Register() {
         e.preventDefault();
         try {
             // Enviar los datos del usuario al backend para registrarse
-            await axios.post("http://localhost:3000/register", user);
+            await axios.post("http://34.224.75.233:3000/register", user);
             
             // Mostrar mensaje de éxito
             setMessage("Registration successful!");

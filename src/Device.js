@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
-import axios from "axios";
 import AddDeviceButton from "./AddDeviceButton";
 
 const Device = () => {
@@ -19,7 +18,7 @@ const Device = () => {
 
     const fetchDevices = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/devices");
+            const response = await axios.get("http://34.224.75.233:3000/devices");
             setDevices(response.data);
         } catch (error) {
             console.error("Error fetching devices:", error);
@@ -29,7 +28,7 @@ const Device = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/devices/${id}`);
+            await axios.delete(`http://34.224.75.233:3000/devices/${id}`);
             fetchDevices();
         } catch (error) {
             console.error("Error deleting device:", error);
@@ -62,7 +61,7 @@ const Device = () => {
 
     const handleSubmit = async () => {
         try {
-            await axios.put(`http://localhost:3000/devices/${selectedDevice.id}`, formData);
+            await axios.put(`http://34.224.75.233:3000/devices/${selectedDevice.id}`, formData);
             fetchDevices();
             setOpen(false);
         } catch (error) {
