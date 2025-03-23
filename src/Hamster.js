@@ -25,7 +25,7 @@ const Hamster = () => {
 
     const fetchHamsters = async () => {
         try {
-            const response = await axios.get("http://34.224.75.233:3000/hamsters");
+            const response = await axios.get("http://18.212.83.4:3000/hamsters");
             setHamsters(response.data);
         } catch (error) {
             console.error("Error fetching hamsters:", error);
@@ -35,7 +35,7 @@ const Hamster = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://34.224.75.233:3000/hamsters/${id}`);
+            await axios.delete(`http://18.212.83.4:3000/hamsters/${id}`);
             fetchHamsters();
         } catch (error) {
             console.error("Error deleting hamster:", error);
@@ -72,7 +72,7 @@ const Hamster = () => {
 
     const handleSubmit = async () => {
         try {
-            await axios.put(`http://34.224.75.233:3000/hamsters/${selectedHamster.id}`, formData);
+            await axios.put(`http://18.212.83.4:3000/hamsters/${selectedHamster.id}`, formData);
             fetchHamsters();
             setOpen(false);
         } catch (error) {

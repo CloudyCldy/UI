@@ -19,7 +19,7 @@ const SensorDataForm = () => {
         setMessage('');
 
         try {
-            const response = await fetch('http://34.224.75.233:3000/sensor-data', {
+            const response = await fetch('http://18.212.83.4:3000/sensor-data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
