@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
 import AddDeviceButton from "./AddDeviceButton";
+import axios from "axios";
 
 const Device = () => {
     const [devices, setDevices] = useState([]);
