@@ -4,57 +4,64 @@ import { useNavigate } from "react-router-dom";
 import "../src/Register.css"; // Asegúrate de que el archivo CSS esté bien enlazado
 
 export default function Register() {
-    // Estado para almacenar los datos del usuario
     const [user, setUser] = useState({ name: "", email: "", password: "", rol: "normal" });
-    
-    // Estado para almacenar mensajes de éxito o error
     const [message, setMessage] = useState(null);
-    
-    // Hook para navegar entre las rutas
     const navigate = useNavigate();
 
-    // Manejar cambios en los campos del formulario
+    // Manejo del cambio en los campos
     const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
-    // Manejar el envío del formulario para registro
+    // Función para registrar al usuario
     const handleRegister = async (e) => {
         e.preventDefault();
+
+        // Verifica que la contraseña sea un string antes de enviarla
+        if (!user.password || typeof user.password !== "string") {
+            setMessage("La contraseña debe ser un texto válido.");
+            return;
+        }
+
         try {
-            // Enviar los datos del usuario al backend para registrarse
-            await axios.post("http://34.224.75.233:3000/register", user);
-            
-            // Mostrar mensaje de éxito
-            setMessage("Registration successful!");
-            
-            // Redirigir al usuario a la página de inicio de sesión después de 2 segundos
+            // Enviar la solicitud al backend
+            const response = await axios.post("http://34.224.75.233:3000/register", {
+                name: user.name,
+                email: user.email,
+                password: String(user.password),  // Asegura que siempre sea string
+                rol: user.rol || "normal"
+            });
+
+            setMessage("¡Registro exitoso!");
+
+            // Redirige al login después de 2 segundos
             setTimeout(() => navigate("/login"), 2000);
+
         } catch (error) {
-            // Capturar y mostrar errores del backend
-            setMessage(error.response?.data?.message || "Registration failed.");
+            // Muestra los mensajes de error del backend
+            setMessage(error.response?.data?.error || "Error en el registro.");
         }
     };
 
     // Función para regresar a la página anterior
     const handleGoBack = () => {
-        navigate(-1); // Redirige a la página anterior en el historial
+        navigate(-1);  // Redirige a la página anterior
     };
 
     return (
         <div className="register-wrap">
             <div className="register-html">
                 <div className="register-form">
-                    <h2 className="h2">Register</h2>
+                    <h2 className="h2">Registro</h2>
 
-                    {/* Mostrar mensaje de error o éxito */}
+                    {/* Muestra el mensaje de éxito o error */}
                     {message && <p className="error-message">{message}</p>}
 
                     {/* Botón de regresar */}
-                    <button onClick={handleGoBack} className="bac-button">Go Back</button>
+                    <button onClick={handleGoBack} className="bac-button">Regresar</button>
 
                     <form onSubmit={handleRegister}>
                         {/* Campo para el nombre */}
                         <div className="group">
-                            <label htmlFor="name" className="label">Name</label>
+                            <label htmlFor="name" className="label">Nombre</label>
                             <input
                                 type="text"
                                 id="name"
@@ -62,14 +69,14 @@ export default function Register() {
                                 className="input"
                                 value={user.name}
                                 onChange={handleChange}
-                                placeholder="Name"
+                                placeholder="Nombre"
                                 required
                             />
                         </div>
-                        
-                        {/* Campo para el correo electrónico */}
+
+                        {/* Campo para el correo */}
                         <div className="group">
-                            <label htmlFor="email" className="label">Email</label>
+                            <label htmlFor="email" className="label">Correo</label>
                             <input
                                 type="email"
                                 id="email"
@@ -77,14 +84,14 @@ export default function Register() {
                                 className="input"
                                 value={user.email}
                                 onChange={handleChange}
-                                placeholder="Email"
+                                placeholder="Correo"
                                 required
                             />
                         </div>
-                        
+
                         {/* Campo para la contraseña */}
                         <div className="group">
-                            <label htmlFor="password" className="label">Password</label>
+                            <label htmlFor="password" className="label">Contraseña</label>
                             <input
                                 type="password"
                                 id="password"
@@ -92,14 +99,14 @@ export default function Register() {
                                 className="input"
                                 value={user.password}
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder="Contraseña"
                                 required
                             />
                         </div>
-                        
-                        {/* Selector de rol del usuario */}
+
+                        {/* Selector para el rol */}
                         <div className="group">
-                            <label htmlFor="rol" className="label">Role</label>
+                            <label htmlFor="rol" className="label">Rol</label>
                             <select
                                 id="rol"
                                 name="rol"
@@ -113,9 +120,9 @@ export default function Register() {
                             </select>
                         </div>
 
-                        {/* Botón para registrar al usuario */}
+                        {/* Botón para registrar */}
                         <div className="group">
-                            <button type="submit" className="button">Register</button>
+                            <button type="submit" className="button">Registrar</button>
                         </div>
                     </form>
                 </div>
