@@ -12,7 +12,7 @@ const SensorDataViewer = () => {
     // 🔥 Función para obtener los datos desde la API
     const fetchSensorData = async () => {
         try {
-            const response = await fetch('http://18.212.83.4:3000/sensor-data');
+            const response = await fetch('http://18.212.83.4:3000/sensores');
             
             if (!response.ok) {
                 throw new Error('Failed to load data');
@@ -64,4 +64,4 @@ const SensorDataViewer = () => {
     );
 };
 
-export default SensorDataViewer;
+export default SensorDataForm;

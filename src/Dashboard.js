@@ -6,6 +6,7 @@ import Device from "./Device";
 import "./Dashboard.css";
 import UserChart from "./UserChart";
 import axios from "axios"; // Make sure to install axios
+import SensorDataForm from "./SensorDataForm";
 
 function Dashboard() {
     const { role } = useParams();
@@ -183,6 +184,7 @@ function Dashboard() {
                 <div className="user-section">
                     <Hamster />
                     <Device />
+                    <SensorDataForm/>
                 </div>
             )}
         </div>
