@@ -1,218 +1,384 @@
-/* Container for the profile card */
-.profile-container {
+/* Global box-sizing adjustment */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Hamster Theme Styles - Large Screen Version */
+:root {
+    --hamster-brown: #8B4513;
+    --hamster-orange: #FFA500;
+    --hamster-light: #F5DEB3;
+    --hamster-dark: #654321;
+    --hamster-accent: #D2691E;
+    --hamster-cream: #FFF8DC;
+    --hamster-gold: #FFD700;
+}
+
+/* Base Styles */
+.hamster-profile-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    padding-top: 90px;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
-    padding: 50px;
-    background-color: #0e0e0e; /* Fondo oscuro para resaltar el neón */
-    min-height: 300px;
-    align-items: center;
+    min-height: 100vh; /* Cambié de height a min-height */
+    background-color: var(--hamster-cream);
+    font-family: 'Arial', sans-serif;
 }
 
-/* Card with a more elegant look */
-.profile-card {
+.hamster-profile-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(139, 69, 19, 0.3);
+    width: 100%;
+    max-width: 1200px;
+    min-height: auto; /* Cambié de 800px a auto para que se ajuste al contenido */
+    overflow: hidden;
+    border: 3px solid var(--hamster-brown);
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 2000px;
-    border: none;
-    border-radius: 15px;
-    padding: 35px;
-    background: linear-gradient(145deg, #1e1e1e, #2a2a2a); /* Fondo oscuro */
-    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2), 0 6px 15px rgba(0, 255, 255, 0.15); /* Sombra neón */
-    transition: all 0.3s ease-in-out;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s forwards;
+    padding-bottom: 30px; /* Asegura que haya espacio al final */
 }
 
-/* Hover effect on the profile card */
-.profile-card:hover {
-    box-shadow: 0 18px 35px rgba(0, 255, 255, 0.3), 0 8px 20px rgba(0, 255, 255, 0.2);
-}
-
-/* Header section of the profile */
-.profile-header {
+/* Header Styles */
+.hamster-profile-header {
+    background: linear-gradient(135deg, var(--hamster-brown), var(--hamster-dark));
+    color: white;
+    padding: 40px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.hamster-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--hamster-gold);
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header-content {
+    text-align: left;
+    max-width: 600px;
+}
+
+.hamster-profile-name {
+    margin: 0 0 10px 0;
+    font-size: 2.5rem;
+    color: var(--hamster-gold);
+    text-shadow: 1px 1px 2px var(--hamster-dark);
+}
+
+.hamster-profile-email,
+.hamster-profile-role {
+    margin: 8px 0;
+    font-size: 1.3rem;
+    color: var(--hamster-light);
+    opacity: 0.9;
+}
+
+/* Body Styles */
+.hamster-profile-body {
+    padding: 40px;
+    background-color: var(--hamster-cream);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    overflow-y: auto; /* Permite el desplazamiento si el contenido es grande */
+}
+
+.hamster-current-fact {
+    background-color: var(--hamster-light);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 8px solid var(--hamster-orange);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fact-title {
+    color: var(--hamster-dark);
+    margin-top: 0;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fact-content {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.hamster-facts-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.facts-title {
+    color: var(--hamster-dark);
+    border-bottom: 3px dotted var(--hamster-accent);
+    padding-bottom: 15px;
+    font-size: 1.8rem;
+    margin-top: 0;
     margin-bottom: 30px;
 }
 
-/* Stylish name of the profile */
-.profile-name {
-    font-size: 32px;
-    font-weight: 700;
-    color: #00ffff; /* Color neón para el nombre */
-    margin-bottom: 5px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.5); /* Brillo alrededor del texto */
-    animation: fadeIn 1s ease-in-out;
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
-/* Email and role with a subtle fade effect */
-.profile-email, .profile-role {
-    font-size: 18px;
-    color: #00ffff; /* Color neón */
-    font-weight: 400;
-    margin-bottom: 8px;
-    animation: fadeIn 1.2s ease-in-out;
-}
-
-/* Body of the profile card */
-.profile-body {
-    height: 230px;
+.fact-card {
+    background-color: rgba(245, 222, 179, 0.3);
+    border-radius: 10px;
+    padding: 25px;
     display: flex;
-    flex-direction: row;
+    gap: 15px;
     align-items: flex-start;
-    margin-top: 30px;
-    gap: 40px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--hamster-light);
 }
 
-/* Profile picture styling */
-.profile-pfp {
-    margin-bottom: 25px;
+.fact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(139, 69, 19, 0.15);
+    background-color: rgba(245, 222, 179, 0.5);
 }
 
-.pfp {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #00ffff; /* Borde neón */
-    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.2);
-    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;
+.fact-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
 }
 
-/* Hover effect on profile picture */
-.pfp:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+.fact-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
-/* Profile details with more spacing and refined look */
-.profile-details {
-    max-width: 600px;
-    font-size: 16px;
-    color: #00ffff; /* Color de texto neón */
-    line-height: 1.8;
-    word-wrap: break-word;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0 10px;
-    max-height: 150px;
-    overflow-y: auto;
+/* Pagination Styles */
+.hamster-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    flex-wrap: wrap;
 }
 
-/* Social media links styling with smooth hover transitions */
-.social-media-links {
-    margin-top: 25px;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
+.hamster-page-btn {
+    padding: 12px 20px;
+    background-color: var(--hamster-light);
+    border: 2px solid var(--hamster-dark);
+    border-radius: 8px;
+    color: var(--hamster-dark);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    min-width: 100px;
 }
 
-.social-media-links ul {
-    list-style-type: none;
-    padding: 0;
+.hamster-page-btn:hover:not(:disabled) {
+    background-color: var(--hamster-orange);
+    color: white;
+    border-color: var(--hamster-orange);
 }
 
-.social-media-links li {
-    margin: 12px 0;
+.hamster-page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-.social-media-links a {
-    text-decoration: none;
-    color: #00ffff; /* Color de los enlaces en neón */
-    font-weight: 500;
-    font-size: 16px;
-    position: relative;
-    transition: color 0.3s ease, transform 0.2s ease;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+.hamster-page-btn.active {
+    background-color: var(--hamster-brown);
+    color: white;
+    border-color: var(--hamster-brown);
+    font-weight: bold;
 }
 
-/* Hover effect on social media links */
-.social-media-links a:hover {
-    color: #00b8b8;
-    transform: translateY(-2px);
+.page-numbers {
+    display: flex;
+    gap: 8px;
+    margin: 0 15px;
 }
 
-.social-media-links a:hover::after {
-    width: 100%;
+/* Footer Styles */
+.hamster-profile-footer {
+    padding: 30px;
+    text-align: center;
+    background-color: var(--hamster-light);
+    border-top: 2px solid var(--hamster-brown);
 }
 
-/* Back button styling with modern hover effect */
-.back-button {
-    margin-top: 30px;
-    padding: 14px 28px;
-    background-color: #00ffff; /* Color de fondo neón */
+.hamster-back-button {
+    padding: 15px 35px;
+    background-color: var(--hamster-brown);
     color: white;
     border: none;
     border-radius: 50px;
-    font-size: 18px;
-    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombra brillante */
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Hover effect on back button */
-.back-button:hover {
-    background-color: #00b8b8;
+.hamster-back-button:hover {
+    background-color: var(--hamster-orange);
     transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); /* Brillo adicional al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Adding smooth transition to card elements */
-.profile-card,
-.profile-header,
-.profile-name,
-.profile-email,
-.profile-role,
-.profile-body,
-.profile-info,
-.profile-pfp,
-.profile-details,
-.social-media-links,
-.back-button {
-    transition: all 0.3s ease;
+/* Loading Styles */
+.hamster-loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--hamster-cream);
+    gap: 20px;
 }
 
-@media (max-width: 480px) {
-    .social-media-links {
-        font-size: 14px;
-        text-align: center;
+.hamster-spinner {
+    font-size: 4rem;
+    animation: spin 1.5s linear infinite;
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    color: var(--hamster-dark);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
 
-    .profile-name {
-        font-size: 22px;
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error Styles */
+.hamster-error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--hamster-cream);
+}
+
+.hamster-error-message {
+    padding: 40px;
+    background-color: #FFD2D2;
+    color: #D8000C;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 600px;
+    font-size: 1.3rem;
+    border: 2px solid #D8000C;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hamster-error-icon {
+    font-size: 2rem;
+}
+
+.hamster-retry-button {
+    padding: 12px 25px;
+    background-color: #D8000C;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    margin-top: 15px;
+}
+
+.hamster-retry-button:hover {
+    background-color: #A80000;
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .hamster-profile-card {
+        max-width: 900px;
+    }
+}
+
+@media (max-width: 992px) {
+    .facts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 
-    .profile-email, .profile-role {
-        font-size: 13px;
-    }
-
-    .profile-details {
-        font-size: 12px;
-        text-align: center;
-        max-height: 120px;
-        padding: 0 5px;
-    }
-
-    .pfp {
-        width: 80px;
-        height: 80px;
-    }
-
-    .back-button {
-        padding: 8px 18px;
-        font-size: 14px;
-    }
-
-    .profile-body {
+    .hamster-profile-header {
         flex-direction: column;
-        align-items: center;
-        gap: 30px;
+        text-align: center;
     }
 
-    .profile-card {
-        padding: 15px;
+    .profile-header-content {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamster-profile-container {
+        padding: 20px;
+    }
+
+    .hamster-profile-card {
+        max-width: 100%;
+        min-height: auto;
+    }
+
+    .hamster-profile-header {
+        padding: 30px 20px;
+    }
+
+    .hamster-profile-body {
+        padding: 25px;
+    }
+
+    .fact-content,
+    .fact-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hamster-profile-name {
+        font-size: 2rem;
+    }
+
+    .hamster-page-btn {
+        padding: 10px 15px;
+        min-width: auto;
     }
 }

@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; 
     flex-direction: column;
     overflow-x: hidden;
     transition: background-color 0.3s ease-in-out;
@@ -36,38 +36,43 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 1.2rem; /* Tamaño moderado */
+    font-size: 2rem; /* Tamaño para pantallas grandes */
 }
 
 h2 {
-    font-size: 1rem; /* Tamaño moderado */
+    font-size: 1.5rem; /* Tamaño moderado */
 }
 
 /* Dashboard Container */
 .dashboard-container {
-    max-width: 1920px;
     width: 100%;
-    max-height: 1080px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 15px; /* Espaciado mejorado */
-    background: linear-gradient(145deg, #ffffff, #e9ecef); /* Degradado suave */
-    border-radius: 8px;
+    max-width: 1600px; 
+    height: auto;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #e9ecef);
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     overflow-x: hidden;
 }
 
 .dashboard-container:hover {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Admin Section */
 .admin-section {
-    background-color: rgba(176, 124, 60, 0.545); /* Azul claro */
-    border-radius: 6px;
-    padding: 15px; /* Espaciado adecuado */
+    background-color: rgba(176, 124, 60, 0.545);
+    border-radius: 8px;
+    padding: 20px;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .admin-section:hover {
@@ -76,19 +81,17 @@ h2 {
 
 /* Search Input */
 .search-input {
-    padding: 12px; /* Hacerlo más grande */
-    font-size: 1rem; /* Aumentar el tamaño de la fuente */
-    border: 1px solid #ced4da; /* Borde gris claro */
-    border-radius: 50px; /* Hacerlo completamente redondeado */
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 50px;
     width: 100%;
-    max-width: 300px; /* Aumentar el ancho máximo */
-    margin-bottom: 10px;
+    max-width: 400px;
     background-color: #ffffff;
     color: #495057;
     transition: border 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    display: block; /* Asegura que esté en bloque */
-    margin-left: auto; /* Alinearlo a la derecha */
-    margin-right: 0; /* Eliminar margen a la derecha */
+    display: block;
+    margin: 0 auto 10px;
 }
 
 ::placeholder {
@@ -96,7 +99,7 @@ h2 {
 }
 
 .search-input:focus {
-    border-color: #007bff; 
+    border-color: #007bff;
     outline: none;
     background-color: #ffffff;
 }
@@ -104,21 +107,20 @@ h2 {
 /* Buttons Container */
 .buttons-container {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    justify-content: flex-start;
-    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
 }
 
 /* Buttons */
 .btn {
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.875rem;
-    color: rgb(59, 57, 57);
-    min-width: 120px;
+    font-size: 0.9rem;
+    color: #fff;
+    min-width: 140px;
     text-align: center;
     background-color: #d4bf73; 
     transition: background-color 0.3s, transform 0.2s;
@@ -138,22 +140,21 @@ h2 {
 
 /* Users Table */
 .table-container {
-    margin-top: 15px;
     width: 100%;
-    border-collapse: collapse;
     overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table-container table {
     width: 100%;
-    border-radius: 6px;
-    background: transparent;
-    border: 1px solid #9d9d9d; /* Borde gris claro */
-    transition: border-color 0.3s ease;
+    min-width: 600px; /* Prevent collapsing */
+    border-collapse: collapse;
+    border: 1px solid #9d9d9d;
 }
 
-.table-container th, .users-table td {
-    padding: 10px 15px;
+.table-container th, .table-container td {
+    padding: 12px 20px;
     border: 1px solid #c1cad4;
     text-align: left;
     color: #495057;
@@ -161,11 +162,11 @@ h2 {
 
 .table-container th {
     background-color: #f8f9fa;
-    color: #2b2c2e; /* Azul de encabezado */
+    color: #2b2c2e;
 }
 
 .table-container tr:nth-child(even) {
-    background-color: #f2f2f2; /* Gris claro */
+    background-color: #f2f2f2;
 }
 
 .table-container tr:hover {
@@ -176,19 +177,19 @@ h2 {
 .pagination {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 15px;
+    gap: 10px;
 }
 
 .pagination button {
-    margin: 0 4px;
-    padding: 8px 12px;
-    cursor: pointer;
+    padding: 8px 14px;
     border: 1px solid #ced4da;
     background-color: #988a5b;
     color: white;
     border-radius: 50%;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     transition: background-color 0.3s, transform 0.2s ease;
+    cursor: pointer;
 }
 
 .pagination button:hover {
@@ -200,15 +201,14 @@ h2 {
     font-weight: bold;
     background-color: #666757;
     color: white;
-    border-color: #2e3338;
 }
 
 /* User Section */
 .user-section {
     text-align: center;
-    padding: 10px 0;
+    padding: 15px;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: rgba(93, 83, 65, 0.1);
 }
 
@@ -221,28 +221,31 @@ input[type="file"] {
     display: none;
 }
 
-/* Media Queries for responsiveness */
+/* Grid Layout for Components */
+.component-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
     .search-input {
-        max-width: 250px;
+        max-width: 300px;
     }
 
     .table-container table {
         font-size: 14px;
     }
 
+    .btn {
+        font-size: 0.8rem;
+        min-width: 120px;
+    }
+
     .pagination button {
         padding: 6px 10px;
         font-size: 0.75rem;
-    }
-
-    .btn {
-        font-size: 0.75rem;
-        min-width: 100px;
-    }
-
-    .dashboard-container {
-        padding: 10px;
     }
 }
 
@@ -253,7 +256,6 @@ input[type="file"] {
 
     .search-input {
         max-width: 100%;
-        margin: 0 auto;
     }
 
     .table-container table {
@@ -270,12 +272,8 @@ input[type="file"] {
         padding: 8px 12px;
     }
 
-    .user-section {
-        padding: 8px 0;
-    }
-
     .dashboard-container {
-        padding: 10px;
+        padding: 15px;
     }
 }
 
@@ -300,14 +298,14 @@ input[type="file"] {
     }
 
     .dashboard-container {
-        padding: 5px;
+        padding: 10px;
     }
 
     h1 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     h2 {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }

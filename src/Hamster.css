@@ -1,30 +1,46 @@
+/* Estilos generales */
 body {
     background-color: #f5e1c8;
     font-family: 'Arial', sans-serif;
     color: #5c3b2e;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    cursor: url('../src/cursor.png'), auto; /* Cursor personalizado */
 }
 
-.hamster-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background-color: #fff6e5;
+/* Contenedor responsivo para la tabla */
+.hamster-table-container {
+    width: 100%;
+    overflow-x: auto; /* Scroll horizontal en pantallas pequeñas */
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff6e5;
 }
 
+/* Tabla */
+.hamster-table {
+    width: 100%;
+    min-width: 600px; /* Evita que la tabla se comprima demasiado */
+    border-collapse: collapse;
+}
+
+/* Estilos para las celdas */
 .hamster-table th, .hamster-table td {
     padding: 10px;
     border: 1px solid #d4a373;
+    text-align: left;
 }
 
+/* Encabezados de la tabla */
 .hamster-table th {
     background-color: #d4a373;
     color: white;
+    font-weight: bold;
 }
 
+/* Botones generales */
 .hamster-button {
     background-color: #c98c5e;
     color: white;
@@ -33,67 +49,142 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
+    transition: background 0.3s;
 }
 
 .hamster-button:hover {
     background-color: #b57250;
 }
 
+/* Botones de edición y eliminación */
 .hamster-edit {
     background-color: #6a994e;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hamster-edit:hover {
+    background-color: #5a7f3e;
 }
 
 .hamster-delete {
     background-color: #bc4749;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s;
 }
 
+.hamster-delete:hover {
+    background-color: #a83a3b;
+}
+
+/* Paginación */
 .pagination {
-    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .pagination-button {
     background-color: #8d6b4e;
     color: white;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
+    transition: background 0.3s;
+}
+
+.pagination-button:hover {
+    background-color: #7a5a3a;
 }
 
 .pagination-button:disabled {
     background-color: #b0a080;
+    cursor: not-allowed;
 }
 
+/* Modal responsivo */
 .modal {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
-    margin: auto;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
     text-align: center;
 }
 
+/* Botones del modal */
 .modal-button {
     background-color: #c98c5e;
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
+    transition: background 0.3s;
 }
-body {
-    cursor: url('../src/cursor.png'), auto;
+
+.modal-button:hover {
+    background-color: #b57250;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .hamster-table th, .hamster-table td {
+        padding: 8px;
+    }
+
+    .hamster-button, .hamster-edit, .hamster-delete {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .pagination-button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .modal {
+        width: 95%;
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hamster-table th, .hamster-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .hamster-button, .hamster-edit, .hamster-delete {
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+    .pagination-button {
+        padding: 5px 8px;
+        font-size: 10px;
+    }
+
+    .modal {
+        width: 100%;
+        max-width: 300px;
+    }
 }

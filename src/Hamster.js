@@ -16,6 +16,7 @@ const Hamster = () => {
         device_id: "",
         user_id: "",
     });
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
@@ -85,7 +86,6 @@ const Hamster = () => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentHamsters = hamsters.slice(indexOfFirstItem, indexOfLastItem);
-
     const totalPages = Math.ceil(hamsters.length / itemsPerPage);
 
     return (
@@ -95,65 +95,81 @@ const Hamster = () => {
                 <AddHamsterButton fetchHamsters={fetchHamsters} />
             </div>
 
-            <table className="hamster-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Breed</th>
-                        <th>Age</th>
-                        <th>Weight</th>
-                        <th>Health Notes</th>
-                        <th>Device ID</th>
-                        <th>Created</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentHamsters.map((hamster) => (
-                        <tr key={hamster.id}>
-                            <td>{hamster.id}</td>
-                            <td>{hamster.user_id}</td>
-                            <td>{hamster.name}</td>
-                            <td>{hamster.breed}</td>
-                            <td>{hamster.age}</td>
-                            <td>{hamster.weight}</td>
-                            <td>{hamster.health_notes}</td>
-                            <td>{hamster.device_id}</td>
-                            <td>{hamster.created_at}</td>
-                            <td>
-                                <button className="hamster-edit" onClick={() => handleEdit(hamster)}>Edit</button>
-                                <button className="hamster-delete" onClick={() => handleDelete(hamster.id)}>Delete</button>
-                            </td>
+            {/* Tabla responsiva */}
+            <div className="hamster-table-container">
+                <table className="hamster-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Breed</th>
+                            <th>Age</th>
+                            <th>Weight</th>
+                            <th>Health Notes</th>
+                            <th>Device ID</th>
+                            <th>Created</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {currentHamsters.map((hamster) => (
+                            <tr key={hamster.id}>
+                                <td>{hamster.id}</td>
+                                <td>{hamster.user_id}</td>
+                                <td>{hamster.name}</td>
+                                <td>{hamster.breed}</td>
+                                <td>{hamster.age}</td>
+                                <td>{hamster.weight}</td>
+                                <td>{hamster.health_notes}</td>
+                                <td>{hamster.device_id}</td>
+                                <td>{hamster.created_at}</td>
+                                <td>
+                                    <button className="hamster-edit" onClick={() => handleEdit(hamster)}>Edit</button>
+                                    <button className="hamster-delete" onClick={() => handleDelete(hamster.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
             {/* Paginación */}
             <div className="pagination">
-                <button className="pagination-button" disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>
+                <button
+                    className="pagination-button"
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                >
                     Previous
                 </button>
                 <span>Page {currentPage} of {totalPages}</span>
-                <button className="pagination-button" disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>
+                <button
+                    className="pagination-button"
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                >
                     Next
                 </button>
             </div>
 
+            {/* Modal para edición */}
             {open && (
                 <div className="modal">
                     <h2>Edit Hamster</h2>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
-                    <input type="text" name="breed" value={formData.breed} onChange={handleChange} placeholder="Breed" />
-                    <input type="text" name="age" value={formData.age} onChange={handleChange} placeholder="Age" />
-                    <input type="text" name="weight" value={formData.weight} onChange={handleChange} placeholder="Weight" />
-                    <input type="text" name="health_notes" value={formData.health_notes} onChange={handleChange} placeholder="Health Notes" />
-                    <input type="text" name="device_id" value={formData.device_id} onChange={handleChange} placeholder="Device ID" />
-                    <input type="text" name="user_id" value={formData.user_id} onChange={handleChange} placeholder="User ID" />
-                    <button className="modal-button" onClick={handleClose}>Cancel</button>
-                    <button className="modal-button" onClick={handleSubmit}>Save</button>
+                    <div className="modal-form">
+                        <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
+                        <input type="text" name="breed" value={formData.breed} onChange={handleChange} placeholder="Breed" />
+                        <input type="text" name="age" value={formData.age} onChange={handleChange} placeholder="Age" />
+                        <input type="text" name="weight" value={formData.weight} onChange={handleChange} placeholder="Weight" />
+                        <input type="text" name="health_notes" value={formData.health_notes} onChange={handleChange} placeholder="Health Notes" />
+                        <input type="text" name="device_id" value={formData.device_id} onChange={handleChange} placeholder="Device ID" />
+                        <input type="text" name="user_id" value={formData.user_id} onChange={handleChange} placeholder="User ID" />
+                    </div>
+                    <div className="modal-actions">
+                        <button className="modal-button" onClick={handleClose}>Cancel</button>
+                        <button className="modal-button" onClick={handleSubmit}>Save</button>
+                    </div>
                 </div>
             )}
         </>
