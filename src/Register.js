@@ -23,7 +23,7 @@ export default function Register() {
 
         try {
             // Enviar la solicitud al backend
-            const response = await axios.post("http://18.212.83.4:3000/register", {
+            const response = await axios.post("http://3.80.117.46:3000/register", {
                 name: user.name,
                 email: user.email,
                 password: String(user.password),  // Asegura que siempre sea string

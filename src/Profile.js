@@ -28,7 +28,7 @@ const Profile = () => {
         const fetchProfile = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get('http://18.212.83.4:3000/profile', {
+                const response = await axios.get('http://3.80.117.46:3000/profile', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

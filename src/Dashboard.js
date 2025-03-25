@@ -20,7 +20,7 @@ function Dashboard() {
 
     useEffect(() => {
         if (role === "admin") {
-            fetch("http://18.212.83.4:3000/users")
+            fetch("http://3.80.117.46:3000/users")
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Failed to fetch users");
@@ -54,7 +54,7 @@ function Dashboard() {
     };
 
     const deleteUser = (id) => {
-        fetch(`http://18.212.83.4:3000/users/${id}`, {
+        fetch(`http://3.80.117.46:3000/users/${id}`, {
             method: "DELETE",
         })
             .then((response) => {
@@ -88,7 +88,7 @@ function Dashboard() {
         const formData = new FormData();
         formData.append("file", file);
     
-        axios.post("http://18.212.83.4:3000/import-excel", formData)
+        axios.post("http://3.80.117.46:3000/import-excel", formData)
             .then((response) => {
                 alert(response.data.message);
                 
@@ -96,7 +96,7 @@ function Dashboard() {
                 if (response.data.insertedRows > 0) {
                     // If insertedRows > 0, you can fetch the users again or update state accordingly
                     // Example of fetching users again (you could optimize this as per your needs)
-                    fetch("http://18.212.83.4:3000/users")
+                    fetch("http://3.80.117.46:3000/users")
                         .then((response) => response.json())
                         .then((data) => setUsers(data));
                 }

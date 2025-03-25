@@ -19,7 +19,7 @@ const Device = () => {
 
     const fetchDevices = async () => {
         try {
-            const response = await axios.get("http://18.212.83.4:3000/devices");
+            const response = await axios.get("http://3.80.117.46:3000/devices");
             setDevices(response.data);
         } catch (error) {
             console.error("Error fetching devices:", error);
@@ -29,7 +29,7 @@ const Device = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://18.212.83.4:3000/devices/${id}`);
+            await axios.delete(`http://3.80.117.46:3000/devices/${id}`);
             fetchDevices();
         } catch (error) {
             console.error("Error deleting device:", error);
@@ -62,7 +62,7 @@ const Device = () => {
 
     const handleSubmit = async () => {
         try {
-            await axios.put(`http://18.212.83.4:3000/devices/${selectedDevice.id}`, formData);
+            await axios.put(`http://3.80.117.46:3000/devices/${selectedDevice.id}`, formData);
             fetchDevices();
             setOpen(false);
         } catch (error) {

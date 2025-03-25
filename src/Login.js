@@ -51,7 +51,7 @@ export default function Login() {
         }
 
         try {
-            const res = await axios.post("http://18.212.83.4:3000/login", user);
+            const res = await axios.post("http://3.80.117.46:3000/login", user);
             setToken(res.data.token);
             setMessage("Login successful! Redirecting...");
             localStorage.removeItem("loginAttempts");

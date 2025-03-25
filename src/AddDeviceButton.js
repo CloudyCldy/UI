@@ -14,7 +14,7 @@ const AddDeviceButton = ({ fetchDevices }) => {
 
     const fetchUsers = async () => {
         try {
-            const userResponse = await axios.get("http://18.212.83.4:3000/users"); // Fetch users
+            const userResponse = await axios.get("http://3.80.117.46:3000/users"); // Fetch users
             setUsers(userResponse.data); // Set the users in state
         } catch (error) {
             console.error("Error fetching users:", error); // Handle errors
@@ -37,7 +37,7 @@ const AddDeviceButton = ({ fetchDevices }) => {
         };
 
         try {
-            await axios.post("http://18.212.83.4:3000/devices", deviceData); // Send device data to the backend
+            await axios.post("http://3.80.117.46:3000/devices", deviceData); // Send device data to the backend
             setOpen(false); // Close the dialog
             fetchDevices(); // Re-fetch the devices to update the list
         } catch (error) {
