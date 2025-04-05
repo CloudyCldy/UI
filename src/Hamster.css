@@ -8,6 +8,18 @@ body {
     padding: 0;
     cursor: url('../src/cursor.png'), auto; /* Cursor personalizado */
 }
+.search-container {
+    margin: 20px;
+    text-align: center;
+}
+
+.search-input {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
 
 /* Contenedor responsivo para la tabla */
 .hamster-table-container {
