@@ -19,7 +19,6 @@ const Hamster = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
-
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
@@ -86,7 +85,7 @@ const Hamster = () => {
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
-        setCurrentPage(1); // Resetear a la primera página cuando se busca
+        setCurrentPage(1);
     };
 
     const filteredHamsters = hamsters.filter(
@@ -107,7 +106,7 @@ const Hamster = () => {
                 <AddHamsterButton fetchHamsters={fetchHamsters} />
             </div>
 
-            {/* Input de búsqueda */}
+            {/* ✅ Input de búsqueda visible arriba */}
             <div className="search-container">
                 <input
                     type="text"
