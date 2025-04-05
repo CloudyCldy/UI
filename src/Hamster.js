@@ -20,6 +20,8 @@ const Hamster = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
+    const [searchTerm, setSearchTerm] = useState("");
+
     useEffect(() => {
         fetchHamsters();
     }, []);
@@ -82,11 +84,21 @@ const Hamster = () => {
         }
     };
 
-    // Paginación
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
+        setCurrentPage(1); // Resetear a la primera página cuando se busca
+    };
+
+    const filteredHamsters = hamsters.filter(
+        (hamster) =>
+            hamster.name.toLowerCase().includes(searchTerm) ||
+            hamster.breed.toLowerCase().includes(searchTerm)
+    );
+
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentHamsters = hamsters.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(hamsters.length / itemsPerPage);
+    const currentHamsters = filteredHamsters.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredHamsters.length / itemsPerPage);
 
     return (
         <>
@@ -95,7 +107,17 @@ const Hamster = () => {
                 <AddHamsterButton fetchHamsters={fetchHamsters} />
             </div>
 
-            {/* Tabla responsiva */}
+            {/* Input de búsqueda */}
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search by name or breed..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="search-input"
+                />
+            </div>
+
             <div className="hamster-table-container">
                 <table className="hamster-table">
                     <thead>
