@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from "@mui/material";
 import AddDeviceButton from "./AddDeviceButton";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ const Device = () => {
         location: "",
         user_id: "",
     });
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         fetchDevices();
@@ -71,9 +72,29 @@ const Device = () => {
         }
     };
 
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value.toLowerCase());
+    };
+
+    const filteredDevices = devices.filter(
+        (device) =>
+            device.device_name.toLowerCase().includes(searchTerm) ||
+            device.location.toLowerCase().includes(searchTerm)
+    );
+
     return (
         <>
             <AddDeviceButton fetchDevices={fetchDevices} />
+            
+            {/* Filtro de búsqueda */}
+            <TextField
+                label="Search by Name or Location"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                fullWidth
+                margin="normal"
+            />
+
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -87,7 +108,7 @@ const Device = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {devices.map((device) => (
+                        {filteredDevices.map((device) => (
                             <TableRow key={device.id}>
                                 <TableCell>{device.id}</TableCell>
                                 <TableCell>{device.user_id}</TableCell>
@@ -103,44 +124,6 @@ const Device = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit Device</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        label="Device Name"
-                        name="device_name"
-                        value={formData.device_name}
-                        onChange={handleChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Location"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        label="User ID"
-                        name="user_id"
-                        value={formData.user_id}
-                        onChange={handleChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleSubmit} color="primary">
-                        Save
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </>
     );
 };
