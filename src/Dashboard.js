@@ -94,8 +94,6 @@ function Dashboard() {
                 
                 // Check if insertedRows is a number and update state accordingly
                 if (response.data.insertedRows > 0) {
-                    // If insertedRows > 0, you can fetch the users again or update state accordingly
-                    // Example of fetching users again (you could optimize this as per your needs)
                     fetch("http://3.80.117.46:3000/users")
                         .then((response) => response.json())
                         .then((data) => setUsers(data));
@@ -182,9 +180,9 @@ function Dashboard() {
                 </div>
             ) : (
                 <div className="user-section">
-                    <Hamster />
-                    <Device />
-                    <SensorDataForm/>
+                    <Hamster searchTerm={searchTerm} />
+                    <Device searchTerm={searchTerm} />
+                    <SensorDataForm searchTerm={searchTerm} />
                 </div>
             )}
         </div>
