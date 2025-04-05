@@ -85,7 +85,7 @@ const Hamster = () => {
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value.toLowerCase());
-        setCurrentPage(1);
+        setCurrentPage(1); // Reset pagination when searching
     };
 
     const filteredHamsters = hamsters.filter(
