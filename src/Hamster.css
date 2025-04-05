@@ -8,17 +8,24 @@ body {
     padding: 0;
     cursor: url('../src/cursor.png'), auto; /* Cursor personalizado */
 }
+
+/* Contenedor de búsqueda */
 .search-container {
     margin: 20px;
     text-align: center;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .search-input {
     padding: 10px;
-    width: 300px;
+    width: 100%; /* Se ajusta al 100% del contenedor */
+    max-width: 400px; /* Máximo ancho del campo de búsqueda */
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
 
 /* Contenedor responsivo para la tabla */
@@ -177,6 +184,10 @@ body {
         width: 95%;
         max-width: 350px;
     }
+
+    .search-input {
+        max-width: 100%;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -198,5 +209,9 @@ body {
     .modal {
         width: 100%;
         max-width: 300px;
+    }
+
+    .search-input {
+        max-width: 100%;
     }
 }
